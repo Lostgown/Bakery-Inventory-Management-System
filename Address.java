@@ -70,7 +70,13 @@ public class Address {
     //--End get & set--------------------------
     
     public String toString(){
-    	return street + ", " + city + ", " + state + ", " +postal + ", " + country;
+    	return String.format("%s, %s, %s, %s, %s",
+        street,        
+        city,          
+        state,         
+        postal,        
+        country        
+    );
     }
     
 }

@@ -29,7 +29,7 @@ public class StockLevel {
     	this.min = min;
     }
     
-    public int getMinStocky(){
+    public int getMinStock(){
     	return this.min;
     }
     
@@ -45,14 +45,14 @@ public class StockLevel {
     
     //--End get & set--------------------------
     
-    public String checkStockLevel(){
+    public String checkStockLevel(int stockQty,int min){
     	if (stockQty < min){
-    		return "Stock below minimun level!";
+    		return "\u001B[31mInsufficient\u001B[0m";
     	}
-    	else if (stockQty > max){
-    		return "Stock over maximum level!";
-    	}
-    	return "Stock level normal.";
+    	else {
+            return "\u001B[32mSufficient\u001B[0m";
+        }
+    	
     }
     
     

@@ -93,7 +93,13 @@ public class Product {
     //--End get & set--------------------------
     
     public String toString(){
-    	return productID + "\t\t" + description + "\t\t\t" + category + "\t" + cartonPrice + "\t\t |" + supplier.toString();
+    	return String.format("%-10s %-20s %-15s %-13.2f | %-50s",
+        productID,              
+        description,            
+        category,               
+        cartonPrice,            
+        supplier.toString()     
+    );
     }
 
 

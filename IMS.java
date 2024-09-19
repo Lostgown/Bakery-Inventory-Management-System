@@ -6,16 +6,23 @@ public class IMS {
         System.out.print("\033[H\033[2J");  
         System.out.flush();  
     }
+    //Update Stock
+    //Stock In
+
+    //Stock Out
 
     //method to check stock
     public static void checkProductStock(Product[] products){
         System.out.println("PRODUCT STOCK");
         System.out.println("=============");
-        System.out.println("PRODUCT ID\tDESCRIPTION\tREMAINING STOCK(CARTON)");
+        System.out.printf("%-15s %-30s %-25s %-10s%n", "PRODUCT ID", "DESCRIPTION", "REMAINING STOCK (CARTON)", "STATUS");
         System.out.println("---------------------------------------------------------------------------------------------");
         //Print out all product stockhere ***
         for (int i = 0;  i < products.length; i++) {
-            System.out.println(products[i].getProductId() + "\t" + products[i].getDescription() + "\t" + products[i].getStockLevel().getStockQty());
+            System.out.printf("%-15s %-30s %-25d %-10s %n", 
+                          products[i].getProductId(), 
+                          products[i].getDescription(), 
+                          products[i].getStockLevel().getStockQty(),products[i].getStockLevel().checkStockLevel(products[i].getStockLevel().getStockQty(), products[i].getStockLevel().getMinStock()));
         }
         System.out.print("Press 0 to return: ");
         Scanner sc = new Scanner(System.in);
@@ -23,7 +30,7 @@ public class IMS {
         switch (option) {
             case 0:
                 clearScreen();
-                reportMenu(products);
+                mainMenu(products);
                 break;
             default:
                 clearScreen();
@@ -36,7 +43,8 @@ public class IMS {
     public static void viewProductDetails(Product[] products){
         System.out.println("PRODUCT DETAILS");
         System.out.println("===============");
-        System.out.println("PRODUCT ID\tDESCRIPTION\t\tCATEGORY\tPrice(Carton) |\tSUPPLIER\tPHONE.NO\t\tADDRESS");
+        System.out.printf("%-10s %-20s %-15s %-10s | %-30s %-15s %-30s%n", 
+        "PRODUCT ID", "DESCRIPTION", "CATEGORY", "Price(Carton)", "SUPPLIER", "PHONE NO", "ADDRESS");
         System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------");
         //Print out all product here ***
         for (int i = 0;  i < products.length; i++) {
@@ -63,7 +71,7 @@ public class IMS {
         System.out.println("(1) View All Product Details");
         System.out.println("(2) View Stock Movement Report");
         System.out.println("(0) Return");
-        System.out.println("Select an option(1-2): ");
+        System.out.print("Select an option(1-2): ");
         Scanner sc = new Scanner(System.in);
         int option = sc.nextInt();
 
