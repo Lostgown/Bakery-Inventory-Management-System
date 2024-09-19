@@ -7,27 +7,57 @@ public class IMS {
         System.out.flush();  
     }
 
-    public static void checkProductStock(){
-        System.out.println("Product Stock");
+    //method to check stock
+    public static void checkProductStock(Product[] products){
+        System.out.println("PRODUCT STOCK");
         System.out.println("=============");
-        //Print out all product stock here ***
-
+        System.out.println("PRODUCT ID\tDESCRIPTION\tREMAINING STOCK(CARTON)");
+        System.out.println("---------------------------------------------------------------------------------------------");
+        //Print out all product stockhere ***
+        for (int i = 0;  i < products.length; i++) {
+            System.out.println(products[i].getProductId() + "\t" + products[i].getDescription() + "\t" + products[i].getStockLevel().getStockQty());
+        }
         System.out.print("Press 0 to return: ");
         Scanner sc = new Scanner(System.in);
         int option = sc.nextInt();
         switch (option) {
             case 0:
                 clearScreen();
-                mainMenu();
+                reportMenu(products);
                 break;
             default:
                 clearScreen();
                 System.out.println("\u001B[31mInvalid Input\u001B[0m");
-                checkProductStock();
+                viewProductDetails(products);
         }
     }
 
-    public static void reportMenu(){
+    //method to view product
+    public static void viewProductDetails(Product[] products){
+        System.out.println("PRODUCT DETAILS");
+        System.out.println("===============");
+        System.out.println("PRODUCT ID\tDESCRIPTION\t\tCATEGORY\tPrice(Carton) |\tSUPPLIER\tPHONE.NO\t\tADDRESS");
+        System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------");
+        //Print out all product here ***
+        for (int i = 0;  i < products.length; i++) {
+            System.out.println(products[i]);
+        }
+        System.out.print("Press 0 to return: ");
+        Scanner sc = new Scanner(System.in);
+        int option = sc.nextInt();
+        switch (option) {
+            case 0:
+                clearScreen();
+                reportMenu(products);
+                break;
+            default:
+                clearScreen();
+                System.out.println("\u001B[31mInvalid Input\u001B[0m");
+                viewProductDetails(products);
+        }
+    }
+
+    public static void reportMenu(Product[] products){
         System.out.println("Report Menu");
         System.out.println("===========");
         System.out.println("(1) View All Product Details");
@@ -40,7 +70,7 @@ public class IMS {
         switch (option) {
             case 1:
                 clearScreen();
-                //
+                viewProductDetails(products);
                 break;
             case 2:
                 clearScreen();
@@ -48,30 +78,30 @@ public class IMS {
                 break;
             case 0:
                 clearScreen();
-                mainMenu();
+                mainMenu(products);
                 break;
             default:
                 clearScreen();
                 System.out.println("\u001B[31mInvalid Input\u001B[0m");
-                reportMenu();
+                reportMenu(products);
         }
     }
     
-    public static void mainMenu(){
+    public static void mainMenu(Product[] products){
         System.out.println("Warehouse Inventory Management System");
         System.out.println("=====================================");
         System.out.println("(1) Check Product Stock Level");
         System.out.println("(2) Update Stock");
         System.out.println("(3) View Report");
         System.out.println("(0) Exit");
-        System.out.print("Select an option(1-4): ");
+        System.out.print("Select an option(1-3): ");
         Scanner sc = new Scanner(System.in);
         int option = sc.nextInt();
 
         switch (option) {
             case 1:
                 clearScreen();
-                checkProductStock();
+                checkProductStock(products);
                 break;
             case 2:
                 clearScreen();
@@ -79,7 +109,7 @@ public class IMS {
                 break;
             case 3:
                 clearScreen();
-                reportMenu();
+                reportMenu(products);
                 break;
             case 0:
                 System.exit(-1);
@@ -87,7 +117,7 @@ public class IMS {
             default:
                 clearScreen();
                 System.out.println("\u001B[31mInvalid Input\u001B[0m");
-                mainMenu();
+                mainMenu(products);
                 
         }
     }
@@ -102,12 +132,25 @@ public class IMS {
         Address address5 = new Address("21,Jln Port","Tengah","Kanan","11300","Roma");
         //Supplier
         Supplier supplier1 = new Supplier("Coke Sdn. Bhd.","0129998888",address1);
-        Supplier supplier2 = new Supplier("Coke Sdn. Bhd.","0129998888",address2);
-        Supplier supplier3 = new Supplier("Coke Sdn. Bhd.","0129998888",address3);
-        Supplier supplier4 = new Supplier("Coke Sdn. Bhd.","0129998888",address4);
-        Supplier supplier5 = new Supplier("Coke Sdn. Bhd.","0129998888",address5);
+        Supplier supplier2 = new Supplier("Sprite Sdn. Bhd.","0129876543",address2);
+        Supplier supplier3 = new Supplier("100 Sdn. Bhd.","0134567890",address3);
+        Supplier supplier4 = new Supplier("Milo Sdn. Bhd.","0145678901",address4);
+        Supplier supplier5 = new Supplier("Hip Sang Sdn. Bhd.","0156789012",address5);
+        //StockLvl
+        StockLevel stockLevel1 = new StockLevel(2140,200,10000);
+        StockLevel stockLevel2 = new StockLevel(3450,200,10000);
+        StockLevel stockLevel3 = new StockLevel(1420,200,10000);
+        StockLevel stockLevel4 = new StockLevel(845,200,10000);
+        StockLevel stockLevel5 = new StockLevel(380,400,10000);
         //Product
-        mainMenu();
+        Product[] products = new Product[5];
+        products[0] = new Product("P001","Coke",49.99,24,"Beverage",supplier1,stockLevel1);
+        products[1] = new Product("P002","Sprite",46.89,24,"Beverage",supplier2,stockLevel2);
+        products[2] = new Product("P003","100 Plus",44.79,24,"Beverage",supplier3,stockLevel3);
+        products[3] = new Product("P004","Milo(Packet)",259.20,24,"Food",supplier4,stockLevel4);
+        products[4] = new Product("P005","Hip Sang",69.90,12,"Food",supplier5,stockLevel5);
+
+        mainMenu(products);
         
     }
 }

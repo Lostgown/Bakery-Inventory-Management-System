@@ -93,7 +93,7 @@ public class Product {
     //--End get & set--------------------------
     
     public String toString(){
-    	return productID + ", " + description + ", " + category + ", " + cartonPrice + ", Supplier: " + supplier.toString();
+    	return productID + "\t\t" + description + "\t\t\t" + category + "\t" + cartonPrice + "\t\t |" + supplier.toString();
     }
 
 

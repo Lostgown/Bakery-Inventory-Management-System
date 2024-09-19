@@ -45,7 +45,7 @@ public class Supplier {
     //--End get & set--------------------------
     
     public String toString(){
-    	return company + "|" + phone + "|" + address.toString();
+    	return company + "\t" + phone + "\t" + address.toString();
     }
     
 }
