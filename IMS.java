@@ -198,6 +198,7 @@ public class IMS {
                     }
                     
                     System.out.println("Purchase successful! " + quantity + " units Stock In from Supplier");
+                    System.out.println("RM" + String.format("%.2f",(PurchaseOrder.calcTotalPrice(product.getCartonPrice(),quantity))) + " deducted");
                     System.out.println("New Account Balance :" + String.format("%.2f", balance));
                 }
             }else {
@@ -289,30 +290,32 @@ public class IMS {
         System.out.print("Select a product(1-5): ");
         Scanner sc = new Scanner(System.in);
         int option = sc.nextInt();
-        System.out.println("\n(1) Inventory Transfer");
-        System.out.println("(2) Purchase");
-        System.out.println("(0) Return");
-        System.out.print("Select a method(1-2): ");
-        int method = sc.nextInt();
-
+        
         switch (option) {
             case 1:
             case 2:
             case 3:
             case 4:
             case 5:
+                System.out.println("\n(1) Inventory Transfer");
+                System.out.println("(2) Purchase");
+                System.out.println("(0) Return");
+                System.out.print("Select a method(1-2): ");
+                int method = sc.nextInt();
                 switch (method){
-                    case 1:
-                        stockInInventory(option,products,stockMovements,balance);
-                        break;
-                    case 2:
-                        generatePO(option, products, stockMovements,balance);
-                        break;
-                    default:
-                        System.out.println("!!!Invalid Input!!!");
-                        stockInMenu(products,stockMovements,balance);
-                }
-                break;
+                            case 1:
+                                stockInInventory(option,products,stockMovements,balance);
+                                break;
+                            case 2:
+                                generatePO(option, products, stockMovements,balance);
+                                break;
+                            case 0:
+                                stockInMenu(products,stockMovements,balance);
+                                break;
+                            default:
+                                System.out.println("!!!Invalid Input!!!");
+                                stockInMenu(products,stockMovements,balance);
+                        }
             case 0:
                 clearScreen();
                 updateStockMenu(products,stockMovements,balance);
@@ -322,6 +325,8 @@ public class IMS {
                 System.out.println("!!!Invalid Input!!!");
                 stockInMenu(products,stockMovements,balance);
         }
+        
+                
     }
 
     //Update StockMenu
