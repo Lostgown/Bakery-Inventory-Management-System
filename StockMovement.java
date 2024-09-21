@@ -1,6 +1,6 @@
 import java.util.Date;
 
-public class StockMovement {
+public class StockMovement implements Comparable{
 	
 	private Date date;
 	private ItemDetails itemDetails;
@@ -34,27 +34,18 @@ public class StockMovement {
     }
     
     //--End get & set--------------------------
-    
-    
-    // Stock in----------------------------------------------
-    
-    public void stockIn(){
-    	itemDetails.getProduct().getStockLevel().setStockQty(itemDetails.getProduct().getStockLevel().
-    	getStockQty() + itemDetails.getOrderQty());
+
+    //compare
+    public int compareTo(Object o){
+    	StockMovement otherMovement = (StockMovement) o;
+    	return date.compareTo(otherMovement.date);
     }
-    
-    
-    // Stock Out---------------------------------------------------------
-    
-    public void stockOut(){
-    	if(itemDetails.getProduct().getStockLevel().getStockQty() >= itemDetails.getOrderQty()){
-    		itemDetails.getProduct().getStockLevel().
-    		setStockQty(itemDetails.getProduct().getStockLevel().getStockQty() - itemDetails.getOrderQty());
-    		System.out.println(itemDetails.getOrderQty() + "stock out at " + date);
-    	}
-    	else{
-    		System.out.println("Not enough stock!");
-    	}
+
+    public String toString(){
+        return String.format("%-10s %s",
+        date,        
+        itemDetails.toString()
+    );
     }
     
 }

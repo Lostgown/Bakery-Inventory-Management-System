@@ -35,7 +35,11 @@ public class ItemDetails {
     //--End get & set--------------------------
     
     public String toString(){
-    	return product.toString() + "\n Order Qty: " + orderQty;
+    	return String.format("%-10s %-15s %7d",
+        product.getProductId(),                
+        product.getDescription(),                  
+        orderQty
+    );
     }
     
 }

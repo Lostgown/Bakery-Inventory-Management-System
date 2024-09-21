@@ -35,19 +35,16 @@ public class PurchaseOrder extends StockMovement{
     
     //--End get & set--------------------------
     
-   public void createOrder() {
-        System.out.println("Order created with ID: " + purchaseID);
-        System.out.println("Supplier: " + supplier.toString());
-        System.out.println("Item Details: " + getItemDetails().toString());
+   public static Double calcTotalPrice(double price,int quantity) {
+        return price * quantity;
     }
-    
-   public double calcPrice() {
-        return getItemDetails().getProduct().getCartonPrice() * getItemDetails().getOrderQty();
-    }
-    
-    public void payment(){
-    	double price = calcPrice();
-    	System.out.println("Total payment: " + price);
+
+    public String toString(){
+            return String.format("%s %10s %s",        
+            super.toString(),
+            purchaseID,
+            supplier.toString()
+        );
     }
     
 }

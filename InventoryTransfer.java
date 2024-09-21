@@ -46,10 +46,12 @@ public class InventoryTransfer extends StockMovement{
     
     //--End get & set--------------------------
     
-    public void executeTransfer(){
-    	System.out.println("Transfer ID: " + transferID);
-    	System.out.println("Transfer from: " + transferFrom + " to " + transferTo);
-    	stockOut();
+    public String toString(){
+        return String.format("%s %10s %10s %10s",        
+        super.toString(),
+        transferID,
+        transferFrom,
+        transferTo
+    );
     }
-    
 }

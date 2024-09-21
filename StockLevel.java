@@ -47,12 +47,26 @@ public class StockLevel {
     
     public String checkStockLevel(int stockQty,int min){
     	if (stockQty < min){
-    		return "\u001B[31mInsufficient\u001B[0m";
+    		return "Insufficient";
     	}
     	else {
-            return "\u001B[32mSufficient\u001B[0m";
+            return "Sufficient";
         }
     	
+    }
+
+    public void increaseStock(int qty) {
+        stockQty += qty;
+        if (stockQty > max) {
+            stockQty = max;  // Prevent stock from exceeding maxStock
+        }
+    }
+
+    public void decreaseStock(int qty) {
+        stockQty -= qty;
+        if (stockQty < 0) {
+            stockQty = 0;  // Prevent stock from going negative
+        }
     }
     
     
